@@ -14,14 +14,14 @@ const RatingForm = () => {
       // Reset state to hide form and thank you section on refresh
     if (storedSubmission) {
       setSubmitForm(true);
-      setShowThankYou(false);
+      setShowThankYou(true);
     }
   }, []);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setSubmitForm(true);
-    setShowThankYou(true);
+    setShowThankYou(false);
     localStorage.setItem('submittedForm', JSON.stringify(true));  // Store the submission status in localStorage
 
     emailjs.sendForm(
@@ -79,7 +79,7 @@ const RatingForm = () => {
           </form>
         </>
       ) : (
-        showThankYou && (
+        !showThankYou && (
           <section id="submitted-section"
             className='flex flex-col items-center mt-10 gap-2 text-center'>
             <img className='w-[50px] h-[50px]'
